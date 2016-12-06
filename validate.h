@@ -1,20 +1,20 @@
 
-template <class A, class B, class C, class D, class E, int length>
+template <class A, class B, class D>
 
-bool validate(const A& min, const B& max, C (&array)[length], D size, E e[])
+bool validate(const A& min, const A& max, B array[], D size, bool* e)
 {
 	bool result = true;
 
-	for (int i = 0; i <= size; i++)
+	for (int i = 0; i < size; i++)
 	{
-		if (min > array[i] || max < array[i])   //Checking to see if value is outside min/max range
+		if (array[i] < max && array[i] > min || array[i] <= max && array[i] >= min)   //Checking to see if value is outside min/max range
 		{
-			result = false;                    //Sets result to false if it is
-			e[i] = false;                     //Sets bool array index to false 
+			e[i] = true;                     //Sets bool array index to false 
 		}
 		else
 		{
-			e[i] = true;                    //Sets bool array index to true
+			result = false;
+			e[i] = false;                    //Sets bool array index to true
 		}
 	}
 
